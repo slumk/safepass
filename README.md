@@ -15,7 +15,7 @@ All packages included in requirements.sh
 >>Ruby
 >>lolcat-Ruby Gem
 >>gnuPG-Used For Encryption
->>Openssl-Also used for encryption
+>>OpenSSL-Also used for encryption
 
 .
 # Installation
