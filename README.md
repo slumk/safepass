@@ -11,16 +11,22 @@ you are always welcome to check for bugs and report them once this project compl
 # Pre-Requirements
 
 All packages included in requirements.sh
->>figlet
->>Ruby
->>lolcat-Ruby Gem
->>gnuPG-Used For Encryption
->>OpenSSL-Also used for encryption
+>figlet
+
+>Ruby
+
+>lolcat-Ruby Gem
+
+>gnuPG-Used For Encryption
+
+>OpenSSL-Also used for encryption
 
 .
 # Installation
 
 1-Import repository using git clone method/manual method
+
 2-Run bash requirment.sh-it will install necessery prerequisites.
+
 3-Run bash pwdman.sh
 
