@@ -2,7 +2,7 @@
 A Simple Password Manager Created In BASH.
 It is under development now.
 
-Uses GPG and Openssl for encrypting files which contains password information.
+Uses ccryprt and OpenSSL for encrypting files which contains password information.
 This project is for educationl purposes only.Don't use it for storing sensitive information.
 
 
@@ -17,7 +17,7 @@ All packages included in requirements.sh
 
 >lolcat-Ruby Gem
 
->gnuPG-Used For Encryption
+>ccrypt-GNU encryption tool
 
 >OpenSSL-Also used for encryption
 

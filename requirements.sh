@@ -20,7 +20,7 @@ com_exit()
 
 trap unex_exit SIGINT
 
-#function to overcome interruption using ctrl+c
+#function to overcome interruption by ctrl+c
 
 unex_exit()
 {
@@ -36,7 +36,7 @@ unex_exit()
 apt install figlet
 apt install ruby
 gem install lolcat
-apt install gnupg
+apt install ccrypt
 apt install openssl
 
 
