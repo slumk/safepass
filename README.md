@@ -4,8 +4,9 @@
 
 ### Description:
 
-A simple command-line password locker coded in BASH.This tool uses GPG for encryption of configuration and secret files which contain password information.
-so you can store all your passwords in a secret locker and lock them with a BIG password.nobody can decrypt your password-protected files without your secret key.so please keep them secret and protected.
+A simple command-line password locker coded in BASH.You can save your secret passwords using this tool and encrypt them.
+This tool uses GnuPG for encryption of configuration and secret files which contain password information.
+so you can store all your passwords in this tool and lock them with a MASTER password.nobody can decrypt your password-protected files without your secret key.so please keep them secret and protected.
 
 ### Features:
 
@@ -17,7 +18,7 @@ so you can store all your passwords in a secret locker and lock them with a BIG 
 
 >Unlimited Password Storing
 
->Fast Locking Templates For Facebook,Instagram,Google Accounts
+>Dedicated Locking Options For Facebook,Instagram,Google Accounts
 
 ### Pre-Requirements:
 
