@@ -8,6 +8,16 @@ A simple command-line password locker coded in BASH.You can save your secret pas
 This tool uses GnuPG for encryption of configuration and secret files which contain password information.
 so you can store all your passwords in this tool and lock them with a MASTER password.nobody can decrypt your password-protected files without your secret key.so please keep them secret and protected.
 
+### Usage:
+
+>Create Your Profile Using A Master Password/Sign Into Existing Account Using Old Password.
+
+>Choose The Lock Template You Want To Save The Password Into ( Only Three Locking Methods Available Right Now,You Can Save Additional App Passwords Using Custom Method)
+
+>You Can Retrieve Your Saved Passwords Using Get Saved Passwords Option.
+
+>Always Keep Your Master Password Safe And Secret.
+
 ### Features:
 
 >Authentication Required To Start the tool
