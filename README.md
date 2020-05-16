@@ -1,6 +1,6 @@
 # safepass
 
-## Store Your Keyrings Secured
+## Keep Your Keyrings Secured
 
 ### Description:
 
@@ -54,8 +54,8 @@ All packages included in requirements.sh
 
 
 
-### IG:@codedtrap
+### Instagram:@codedtrap
 
-##you are always welcome to check for bugs and report them
+##### you are always welcome to check for bugs and report them
 
-### give me credits if you copy any part of this code
+##### give me credits if you copy any part of this code
