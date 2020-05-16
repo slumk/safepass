@@ -12,7 +12,7 @@ so you can store all your passwords in this tool and lock them with a MASTER pas
 
 >Create Your Profile Using A Master Password/Sign Into Existing Account Using Old Password.
 
->Choose The Lock Template You Want To Save The Password Into ( Only Three Locking Methods Available Right Now,You Can Save Additional App Passwords Using Custom Method)
+>Choose The Lock Template You Want To Save The Password Into ( Only Three Fast Locking Methods Available Right Now,You Can Save Additional App Passwords Using Custom Method)
 
 >You Can Retrieve Your Saved Passwords Using Get Saved Passwords Option.
 
