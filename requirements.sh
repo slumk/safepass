@@ -6,21 +6,21 @@
 
 
 echo -e "\e[36m\nPlease Wait...Requested Dependancies For pwdman.sh Will Be Installed Shortly...\e[0m"
-sleep 5
+sleep 3
 
-#function created for execution at exit
+#to execute at exit signal
 
 com_exit()
 {
 	figlet "All Set!!" | lolcat 
 	echo -e  "\nFinished.Exiting..." | lolcat
 	sleep 3
-	echo -e  "\n\e[1mYou Can Now Successfully Run The pwdman.sh!!\e[0m" | lolcat
+	echo -e  "\n\e[1mNow you can successfully run pwdman.sh\e[0m" | lolcat
 }
 
 trap unex_exit SIGINT
 
-#function to overcome interruption by ctrl+c
+#to overcome interruption by ctrl+c
 
 unex_exit()
 {
@@ -36,8 +36,7 @@ unex_exit()
 apt install figlet
 apt install ruby
 gem install lolcat
-apt install ccrypt
-apt install openssl
+apt install gnupg
 
 
 clear
