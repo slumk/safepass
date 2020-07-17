@@ -3,7 +3,7 @@
 #A simple password locker coded in BASH.do not use this for storing sensitive information.only use this for educational purposes only.y
 
 
-function requirements_banner          
+function requirements_banner      #function for printing requirements installation confirmation dialogue 
 {
 	echo -e "\e[31m\nDid you run requirments.sh before executing this script?(Y/N)\e[0m"
 	read choice
@@ -23,15 +23,16 @@ function requirements_banner
 			
 }
 
-welcome_banner()
+welcome_banner()      #function for printing welcome message
 {
 	figlet "SafePass" | lolcat 2>&1 
         echo -e "\n\e[1m          KEEP KEYRINGS SAFE\e[0m" |lolcat
 	echo -e  "\n<<coded by @codedtrap>>" | lolcat
 	echo -e "\n<<Instagram:@codedtrap>>" | lolcat
 	echo -e "\n\e[1m***DO NOT SAVE SENSITIVE DATA WITH THIS***\e[0m" | lolcat
+#lolcat is the ruby package used for graphical alterations
 }
-sign()
+sign()          #function for creating profile 
 {
 	read -p  "Please Enter Password:" password
 	read -sp "Confirm Password:" password_2
@@ -39,18 +40,22 @@ sign()
 	then
 		echo -e "\nCreating Your Profile..." | lolcat
 		echo $password | md5sum > .safepass_saved.config
+		#writing password md5 hash sum to config file for enhanced security
 		echo $password | gpg --batch --yes --passphrase-fd 0 -c .safepass_saved.config
+		#gpg used for encryption of passwords
 		rm .safepass_saved.config
+		#thus encrypted file created,deleting source file used for encryption
 	else
 		echo -e "\nSorry..The Entered Passwords Doesn't Match..."
 		sign
+		#using recursion for retrying on failed password matches
 	fi
 }
 
-auth_start()
+auth_start()                #function for storing and encrypting passwords through menu
 {
 	sec_file=".safepass_saved.config.gpg"
-	if [ -e "$sec_file" ]
+	if [ -e "$sec_file" ]          #checking if encrypted file exists
 	then
 		echo -e  "\nWelcome Back,Do you want to use your existing account(Y/n)\e[1m\nSelecting NO will erase all your data!!!\e[0m" | lolcat
 		read choice
@@ -363,7 +368,18 @@ retrieve()
 		x|X|BACK|back)
 			show_menu
 			;;
-	esac
+		reset|R|RESET|r)
+			if [ -e ".safepass_saved_config.gpg" ]
+			then
+				rm ".safepass_saved.config.gpg"
+				rm -rf .safepass
+				rm .safepass_latest_logs.txt
+				auth_start
+			else
+				echo "INVALID OPTION...Please Retry..."
+				show_menu
+			fi
+		esac   		
 }
 
 bye()
