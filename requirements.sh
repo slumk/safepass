@@ -8,9 +8,7 @@
 echo -e "\e[36m\nPlease Wait...Requested Dependancies For pwdman.sh Will Be Installed Shortly...\e[0m"
 sleep 3
 
-#to execute at exit signal
-
-com_exit()
+com_exit()             #function for executing when EXIT signal detected
 {
 	figlet "All Set!!" | lolcat 
 	echo -e  "\nFinished.Exiting..." | lolcat
@@ -18,11 +16,9 @@ com_exit()
 	echo -e  "\n\e[1mNow you can successfully run pwdman.sh\e[0m" | lolcat
 }
 
-trap unex_exit SIGINT
+trap unex_exit SIGINT		#catching interruption signal
 
-#to overcome interruption by ctrl+c
-
-unex_exit()
+unex_exit()           #function to execute when (CTRL+C) detected
 {
 	clear
 	echo -e "\e[31m\n(CTRL+C Detected).\e[5mExiting...\e[0m"
@@ -39,9 +35,9 @@ gem install lolcat
 apt install gnupg
 
 
-clear
+clear       #clearing terminal screen
 
-trap com_exit EXIT
+trap com_exit EXIT    #catching EXIT signal
 
 
 

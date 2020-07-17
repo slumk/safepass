@@ -3,7 +3,7 @@
 #A simple password locker coded in BASH.do not use this for storing sensitive information.only use this for educational purposes only.y
 
 
-function requirements_banner
+function requirements_banner          
 {
 	echo -e "\e[31m\nDid you run requirments.sh before executing this script?(Y/N)\e[0m"
 	read choice
