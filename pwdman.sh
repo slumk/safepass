@@ -20,7 +20,6 @@ function requirements_banner      #function for printing requirements installati
 			exit
 			;;
 	esac
-			
 }
 
 welcome_banner()      #function for printing welcome message
@@ -97,8 +96,6 @@ auth_start()                #function for storing and encrypting passwords throu
 		date >> .safepass_latest_logs.txt
 		show_menu
 	fi
-
-
 }
 
 show_menu()
@@ -379,7 +376,7 @@ retrieve()
 				echo "INVALID OPTION...Please Retry..."
 				show_menu
 			fi
-		esac   		
+		esac
 }
 
 bye()
@@ -411,22 +408,8 @@ ctrl_c()
 	sleep 2
 	exit
 }
-trap ctrl_c SIGINT
-requirements_banner
-welcome_banner
-auth_start
-trap bye EXIT
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+trap ctrl_c SIGINT      #catching interruption signal
+requirements_banner	#printing startup confirmation scene
+welcome_banner         #printing welcome banner
+auth_start            #authentication menu
+trap bye EXIT              #catching EXIT signal
