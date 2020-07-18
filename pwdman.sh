@@ -57,7 +57,7 @@ auth_start()                #function for storing and encrypting passwords throu
 	if [ -e "$sec_file" ]          #checking if encrypted file exists
 	then
 		echo -e  "\nWelcome Back,Do you want to use your existing account(Y/n)\e[1m\nSelecting NO will erase all your data!!!\e[0m" | lolcat
-		read choice
+		read choice   #reading variable for user's choice about account management
 		case $choice in
 			Y|y|YES|yes)
 				read -sp "Enter Password:"  test_pass
@@ -73,6 +73,7 @@ auth_start()                #function for storing and encrypting passwords throu
 					echo $test_pass | gpg --batch --yes --passphrase-fd 0 -c ".safepass_saved.config"
 					rm .safepass_saved.config
 					date >> .safepass_latest_logs.txt
+					#storing date for classification of log entries
 					sleep 3
 					show_menu
 				else
@@ -82,19 +83,19 @@ auth_start()                #function for storing and encrypting passwords throu
 				fi
 				;;
 			N|NO|n|no)
-				rm ".safepass_saved.config.gpg"
-				rm -rf .safepass
-				rm .safepass_latest_logs.txt
+				rm ".safepass_saved.config.gpg"  #deleting encrypted file
+				rm -rf .safepass  #deleting secret folder 
+				rm .safepass_latest_logs.txt  #deleting log file
 				echo -e  "\n\e[1mAll Data Deleted!!!Restarting...\e[0m" | lolcat
 				sleep 3
-				auth_start
+				auth_start #starting again using recursion
 				;;
 		esac
 	else
 		echo -e "\e[1mWELCOME.PLEASE CREATE YOUR PROFILE...\e[0m"
-		sign
-		date >> .safepass_latest_logs.txt
-		show_menu
+		sign     #function for creating new_profile
+		date >> .safepass_latest_logs.txt  
+		show_menu    # jumping to menu for storing passwords
 	fi
 }
 
@@ -123,17 +124,17 @@ show_menu()
 		echo -e "\n\e[1;33m[\e[0m\e[1;32m5\e[0m\e[1;33m]\e[0m \e[1;31mGet Your Saved Keys\e[0m"
 	fi
 	echo -e "\n\e[1;33m[\e[0m\e[1;32mX\e[0m\e[1;33m]\e[0m \e[1;31mExit\e[0m"	
-	read -p "Enter Your Option:" option_1
-	accept_choice $option_1
+	read -p "Enter Your Option:" option_1    #reading variable option_1 for choice of user
+	accept_choice $option_1  #passing read variable to accept_choice function as arguement
 }
 
 accept_choice()
 {
-	tmp=$1
+	tmp=$1    #reading passed arguement
 	case $tmp in
 		1)
-			local fbname
-			local fbpass
+			local fbname    #fb_user_name
+			local fbpass   #fb_password
 			read -p "Enter Username:" fbname
 			read -sp "Enter Password:" fbpass
 			mkdir -p .safepass/.cred_secured/.fb_creds
@@ -158,12 +159,12 @@ accept_choice()
 			else
 				echo -e "\nThe entered password was wrong" | lolcat
 				echo -e "\nPlease try again..." | lolcat
-				show_menu
+				show_menu     #jumping back to menu
 			fi
 			;;
 		2)
-			local igpass
-			local igname
+			local igpass     #ig_password
+			local igname     #ig_username
 			read -p "Enter Username:" igname
 			read -sp "Enter Password:" igpass
 			mkdir -p .safepass/.cred_secured/.ig_creds
@@ -192,8 +193,8 @@ accept_choice()
 			fi
 			;;
 		3)
-			local gname
-			local gpass
+			local gname   #google_username
+			local gpass   #google_password
 			read -p "Enter Username:" gname
 			read -sp "Enter Password:" gpass
 			mkdir -p .safepass/.cred_secured/.go_creds
@@ -222,9 +223,9 @@ accept_choice()
 			fi
 			;;
 		4)
-			local appname
-			local cuname
-			local cupass
+			local appname      #custom_app_name variable
+			local cuname      #custom_app user name
+			local cupass      #custom_app password
 			read -p "Enter Appname:" appname
 			read -p "Enter Username:" cuname
 			read -sp "Enter Password:" cupass
@@ -300,10 +301,10 @@ accept_choice()
 	esac
 }
 
-retrieve()
+retrieve()                 #function for retrieving saved entries
 {
 	read -p "Enter Your Choice:" choice
-	local mpass
+	local mpass      #referring master_password
 	case $choice in
 		1)
 			read -sp "Enter Master Password:" mpass
@@ -316,7 +317,7 @@ retrieve()
 			echo -e "\n----------------------------"
 			echo $mpass | gpg --batch --yes --passphrase-fd 0 -c ".safepass/.cred_secured/.fb_creds/.sec_cred.txt"
 			rm ".safepass/.cred_secured/.fb_creds/.sec_cred.txt"
-			unset mpass
+			unset mpass    #deleting mpass variable for preventing loss of data
 			show_menu
 			;;
 		2)
@@ -355,7 +356,7 @@ retrieve()
 			rm ".safepass/.cred_secured/.custom/.$app/.sec_cred.txt.gpg" 2>> .safepass_latest_logs.txt
 			echo -e "\e[5m\e[1;31m\nGET YOUR USERNAME AND PASSWORD\e[0m\n\n"
 			echo -e "\n------------------------------"
-			echo -e "\n\e[5mUsername:::$(head -1 ".safepass/.cred_secured/.custom/.$app/.sec_cred.txt" )" 2>> .safepass_latest_logs.txt 
+			echo -e "\n\e[5mUsername:::$(head -1 ".safepass/.cred_secured/.custom/.$app/.sec_cred.txt" )" 2>> .safepass_latest_logs.txt  
 			echo -e "\n\e[5mPassword:::$(tail -1 ".safepass/.cred_secured/.custom/.$app/.sec_cred.txt" )" 2>> .safepass_latest_logs.txt
 			echo -e  "\n-----------------------------"
 			echo $mpass | gpg --batch --yes --passphrase-fd 0 -c ".safepass/.cred_secured/.custom/.$app/.sec_cred.txt" 2>> .safepass_latest_logs.txt
@@ -379,14 +380,14 @@ retrieve()
 		esac
 }
 
-bye()
+bye()      #function for executing at EXIT signal
 {
 	echo "Exiting......." | lolcat
 	sleep 2
 	figlet "BYE..." | lolcat
 }
 
-ctrl_c()
+ctrl_c()    #function for executing when (CTRL+C) detects
 {
 	echo -e  "\n(CTRL+C) Detected!!Deleting Unencrypted Files....." | lolcat
 	local fb=".safepass/.cred_secured/.fb_creds/.sec_cred.txt"
@@ -412,4 +413,4 @@ trap ctrl_c SIGINT      #catching interruption signal
 requirements_banner	#printing startup confirmation scene
 welcome_banner         #printing welcome banner
 auth_start            #authentication menu
-trap bye EXIT              #catching EXIT signal
+trap bye EXIT              #catching EXIT signal\
