@@ -1,3 +1,5 @@
+This is a beta version, if you wanna use stable version, please refer to master branch
+
 # safepass
 
 ## Keep Your Keyrings Secured
